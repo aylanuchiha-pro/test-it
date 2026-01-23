@@ -36,7 +36,7 @@ class TaskServiceTest {
 
         Mockito.when(userRepository.findById(1L)).thenReturn(Optional.of(new User("Requester")));
         Mockito.when(userRepository.findById(2L)).thenReturn(Optional.of(new User("Assigned")));
-        taskService.createTask("aylan", "bg", 1L, 2L);
+        taskService.createTask("aylan et meriem", "bg", 1L, 2L);
 
         Mockito.verify(taskRepository).save(Mockito.any(Task.class));
 
