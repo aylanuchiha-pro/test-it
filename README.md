@@ -1,3 +1,8 @@
+LOUNICI Aylan
+ALIB Meriem
+
+on est a 2, c'est vous qui nous l'aviez dit car son pc ne fonctionnait plus. 
+
 # Test It - Application de Gestion de Tâches
 
 Application Spring Boot simple pour l'apprentissage des tests unitaires via une API REST de gestion de tâches.
