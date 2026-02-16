@@ -36,7 +36,8 @@ class TaskControllerTest {
     @BeforeEach
     void setUp() {
         // Créer un utilisateur de test en DB
-        User user = new User("testuser");
+        User user = new User("pingoo");
+        user.setPassword("{noop}12345");
         userRepository.save(user);
         userId = user.getId();
         // Set current user for auth
@@ -45,7 +46,7 @@ class TaskControllerTest {
 
     @Test
     void getAllTasks_shouldReturnEmptyList_initially() throws Exception {
-        mockMvc.perform(get("/tasks"))
+        mockMvc.perform(get("/tasks").header("Authorization", "Basic cGluZ29vOjEyMzQ1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
     }
@@ -60,6 +61,7 @@ class TaskControllerTest {
             """;
 
         mockMvc.perform(post("/tasks")
+                .header("Authorization", "Basic cGluZ29vOjEyMzQ1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(taskJson))
                 .andExpect(status().isOk())
@@ -69,7 +71,7 @@ class TaskControllerTest {
 
     @Test
     void getTasksByUser_shouldReturnUserTasks() throws Exception {
-        mockMvc.perform(get("/tasks/user/{userId}", userId))
+        mockMvc.perform(get("/tasks/user/{userId}", userId).header("Authorization", "Basic cGluZ29vOjEyMzQ1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray());
     }
