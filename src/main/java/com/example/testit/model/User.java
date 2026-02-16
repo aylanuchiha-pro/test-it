@@ -14,6 +14,8 @@ public class User {
     private String username;
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_id")
@@ -43,4 +45,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setRole(Role role) { this.role = role; }
+    public Role getRole() { return role; }
 }

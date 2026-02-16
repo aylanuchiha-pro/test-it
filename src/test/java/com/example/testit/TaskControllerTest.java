@@ -1,6 +1,7 @@
 package com.example.testit;
 
 import com.example.testit.adapter.user.CurrentUserServiceFake;
+import com.example.testit.model.Role;
 import com.example.testit.model.Status;
 import com.example.testit.model.Task;
 import com.example.testit.model.User;
@@ -38,6 +39,7 @@ class TaskControllerTest {
         // Créer un utilisateur de test en DB
         User user = new User("pingoo");
         user.setPassword("{noop}12345");
+        user.setRole(Role.ADMIN);
         userRepository.save(user);
         userId = user.getId();
         // Set current user for auth
